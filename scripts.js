@@ -358,3 +358,42 @@ function generateUniqueId() {
   const uniqueId = randomStr + dateTimeStrWithoutSeparators
   return uniqueId
 }
+// Create an array to store responses
+let responses = [];
+
+// Function to handle new responses
+function handleResponse(response) {
+    // Add response to the array
+    responses.push(response);
+
+    // Update the response container with the new response
+    document.getElementById('response-container').innerHTML += `<p>${response}</p>`;
+}
+
+// Function to download transcript
+function downloadTranscript() {
+    // Convert responses array to a string
+    const transcript = responses.join('\n');
+    
+    // Create a Blob with the transcript data
+    const blob = new Blob([transcript], { type: 'text/plain' });
+    
+    // Create a temporary URL for the Blob
+    const url = URL.createObjectURL(blob);
+    
+    // Create a link element
+    const link = document.createElement('a');
+    
+    // Set link's href attribute to the URL of the Blob
+    link.href = url;
+    
+    // Set link's download attribute to specify the filename
+    link.download = 'transcript.txt';
+    
+    // Simulate click on the link to trigger download
+    link.click();
+    
+    // Clean up by revoking the URL
+    URL.revokeObjectURL(url);
+}
+

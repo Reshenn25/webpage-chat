@@ -82,7 +82,7 @@ body, html {
   top: 10%;
   left: 5%;
   width: 90%;
-  max-height: 70%;
+  max-height: calc(100% - 150px); /* Adjust maximum height */
   overflow-y: auto;
   padding: 20px; /* Increase padding */
   background-color: #fff; /* Set response container background color to white */
@@ -129,6 +129,7 @@ a {
 .download-link:hover {
   background-color: #0077cc; /* Darker blue background color on hover */
 }
+
 
 
 

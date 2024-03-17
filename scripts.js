@@ -351,20 +351,32 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 300)
     })
   }
-})
 
-// Function to generate a unique ID for the user
-function generateUniqueId() {
-  // generate a random string of 6 characters
-  const randomStr = Math.random().toString(36).substring(2, 8)
-  // get the current date and time as a string
-  const dateTimeStr = new Date().toISOString()
-  // remove the separators and milliseconds from the date and time string
-  const dateTimeStrWithoutSeparators = dateTimeStr
-    .replace(/[-:]/g, '')
-    .replace(/\.\d+/g, '')
-  // concatenate the random string and date and time string
-  const uniqueId = randomStr + dateTimeStrWithoutSeparators
-  return uniqueId
-}
+  // Function to generate a unique ID for the user
+  function generateUniqueId() {
+    // generate a random string of 6 characters
+    const randomStr = Math.random().toString(36).substring(2, 8)
+    // get the current date and time as a string
+    const dateTimeStr = new Date().toISOString()
+    // remove the separators and milliseconds from the date and time string
+    const dateTimeStrWithoutSeparators = dateTimeStr
+      .replace(/[-:]/g, '')
+      .replace(/\.\d+/g, '')
+    // concatenate the random string and date and time string
+    const uniqueId = randomStr + dateTimeStrWithoutSeparators
+    return uniqueId
+  }
+
+  // Function to adjust response container height based on content
+  function adjustResponseContainerHeight() {
+    responseContainer.style.maxHeight = `${responseContainer.scrollHeight}px`;
+  }
+
+  // Call the function whenever there's a change in response container content
+  responseContainer.addEventListener('DOMNodeInserted', adjustResponseContainerHeight);
+  responseContainer.addEventListener('DOMNodeRemoved', adjustResponseContainerHeight);
+
+  // Initial adjustment on page load
+  adjustResponseContainerHeight();
+})
 

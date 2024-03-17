@@ -9,6 +9,7 @@ body, html {
   height: 100%;
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
+  background-color: #000; /* Set background color to black */
 }
 
 #background {
@@ -41,7 +42,7 @@ body, html {
   bottom: 15%;
   left: 50%;
   transform: translate(-50%, 0);
-  color: rgba(0, 0, 0, 0.6); /* Change placeholder text color to black */
+  color: rgba(255, 255, 255, 0.6); /* Change placeholder text color back to white */
   font-weight: 300;
   font-size: 18px;
   opacity: 0;
@@ -78,7 +79,7 @@ body, html {
   background: transparent;
   border: none;
   outline: none;
-  color: #000; /* Change input text color to black */
+  color: #fff; /* Change input text color back to white */
   font-size: 18px;
   text-align: center;
 }
@@ -91,11 +92,12 @@ body, html {
   max-height: 70%; /* Limit the maximum height of the response container */
   overflow-y: auto; /* Add scrolling functionality */
   padding: 10px;
-  background-color: #f7f7f7;
+  background-color: #333; /* Change response container background color to dark gray */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   opacity: 0;
   transition: opacity 0.8s;
+  color: #fff; /* Change response text color to white */
 }
 
 #credits {
@@ -134,7 +136,7 @@ a {
 }
 
 #user-input::placeholder {
-  color: #000; /* Change placeholder text color to black */
+  color: #fff; /* Change placeholder text color back to white */
 }
 
 @keyframes waveAnimation {

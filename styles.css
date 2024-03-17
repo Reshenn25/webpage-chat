@@ -9,7 +9,7 @@ body, html {
   height: 100%;
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
-  background-color: #fff; /* Set background color to white */
+  background-color: #000; /* Set background color to black */
 }
 
 #background {
@@ -92,7 +92,7 @@ body, html {
   max-height: 70%;
   overflow-y: auto;
   padding: 10px;
-  background-color: #fff; /* Change response container background color to white */
+  background-color: #fff; /* Set response container background color to white */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   opacity: 1; /* Set opacity to 1 to prevent fading */
@@ -153,3 +153,4 @@ a {
     opacity: 0;
   }
 }
+

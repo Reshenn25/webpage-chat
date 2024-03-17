@@ -290,14 +290,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Start playing audios sequentially
       playNextAudio()
 
-      // Calculate maximum height based on the input bar position and viewport height
-      const inputContainerHeight = inputFieldContainer.offsetHeight
-      const inputContainerTop = inputFieldContainer.getBoundingClientRect().top
-      const viewportHeight = window.innerHeight
-      const maxResponseContainerHeight = viewportHeight - inputContainerTop - inputContainerHeight - 30 // Adjust spacing
-
-      // Set the maximum height of the response container
-      responseContainer.style.maxHeight = `${maxResponseContainerHeight}px`
+      // Adjust response container height based on content
+      adjustResponseContainerHeight();
     }, 250)
     setTimeout(() => {
       // Re-enable input field and remove focus
@@ -352,31 +346,27 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  // Function to generate a unique ID for the user
-  function generateUniqueId() {
-    // generate a random string of 6 characters
-    const randomStr = Math.random().toString(36).substring(2, 8)
-    // get the current date and time as a string
-    const dateTimeStr = new Date().toISOString()
-    // remove the separators and milliseconds from the date and time string
-    const dateTimeStrWithoutSeparators = dateTimeStr
-      .replace(/[-:]/g, '')
-      .replace(/\.\d+/g, '')
-    // concatenate the random string and date and time string
-    const uniqueId = randomStr + dateTimeStrWithoutSeparators
-    return uniqueId
-  }
-
   // Function to adjust response container height based on content
   function adjustResponseContainerHeight() {
-    responseContainer.style.maxHeight = `${responseContainer.scrollHeight}px`;
+    responseContainer.style.height = 'auto'; // Reset height to auto to calculate the new height
+    const computedStyle = window.getComputedStyle(responseContainer);
+    const scrollHeight = responseContainer.scrollHeight;
+    const height = parseFloat(computedStyle.getPropertyValue('height'));
+    responseContainer.style.height = Math.max(height, scrollHeight) + 'px'; // Set the height to the maximum of the calculated height or scroll height
   }
-
-  // Call the function whenever there's a change in response container content
-  responseContainer.addEventListener('DOMNodeInserted', adjustResponseContainerHeight);
-  responseContainer.addEventListener('DOMNodeRemoved', adjustResponseContainerHeight);
-
-  // Initial adjustment on page load
-  adjustResponseContainerHeight();
 })
 
+// Function to generate a unique ID for the user
+function generateUniqueId() {
+  // generate a random string of 6 characters
+  const randomStr = Math.random().toString(36).substring(2, 8)
+  // get the current date and time as a string
+  const dateTimeStr = new Date().toISOString()
+  // remove the separators and milliseconds from the date and time string
+  const dateTimeStrWithoutSeparators = dateTimeStr
+    .replace(/[-:]/g, '')
+    .replace(/\.\d+/g, '')
+  // concatenate the random string and date and time string
+  const uniqueId = randomStr + dateTimeStrWithoutSeparators
+  return uniqueId
+}

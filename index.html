@@ -18,8 +18,21 @@
       <input id="user-input" type="text" placeholder="Type here..." /> 
     </div>
     <div id="response-container"></div>
-    <a href="path/to/transcript.txt" class="download-link" download>Download Transcript</a>
+    <a href="#" id="download-link" class="download-link">Download Transcript</a>
+    <script>
+      // JavaScript code for downloading the transcript
+      function downloadTranscript() {
+        const responses = document.querySelectorAll('#response-container p');
+        const transcript = Array.from(responses).map(response => response.textContent).join('\n');
+        const blob = new Blob([transcript], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const link = document.getElementById('download-link');
+        link.href = url;
+        link.download = 'transcript.txt';
+      }
+    </script>
     <script data-version="development" src="scripts.js" id="vfassistant"></script>
 </body>
 </html>
+
 

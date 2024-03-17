@@ -289,6 +289,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Start playing audios sequentially
       playNextAudio()
+
+      // Calculate maximum height based on the input bar position and viewport height
+      const inputContainerHeight = inputFieldContainer.offsetHeight
+      const inputContainerTop = inputFieldContainer.getBoundingClientRect().top
+      const viewportHeight = window.innerHeight
+      const maxResponseContainerHeight = viewportHeight - inputContainerTop - inputContainerHeight - 30 // Adjust spacing
+
+      // Set the maximum height of the response container
+      responseContainer.style.maxHeight = `${maxResponseContainerHeight}px`
     }, 250)
     setTimeout(() => {
       // Re-enable input field and remove focus
@@ -358,3 +367,4 @@ function generateUniqueId() {
   const uniqueId = randomStr + dateTimeStrWithoutSeparators
   return uniqueId
 }
+

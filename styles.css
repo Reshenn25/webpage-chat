@@ -131,7 +131,6 @@ a {
   display: none;
 }
 
-/* SiriWave audiogram styling */
 .siri-wave canvas {
   position: absolute;
   width: 100%;
@@ -139,8 +138,12 @@ a {
   top: 0;
   left: 0;
   z-index: -1;
-  background-color: transparent; /* Set the background color to transparent */
-  opacity: 0.8; /* Adjust the opacity as needed */
+  opacity: 0.5; /* Set opacity to 50% */
+}
+
+/* Adjust the color of the SiriWave to white */
+.siri-wave canvas {
+  background-color: #fff; /* Set the background color to white */
 }
 
 @keyframes fadeIn {

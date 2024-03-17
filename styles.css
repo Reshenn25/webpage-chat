@@ -87,11 +87,10 @@ body, html {
 #response-container {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 5%; /* Adjust this value to align it with the left edge */
   max-width: 50%;
   max-height: 50%;
-  text-align: center;
+  text-align: left; /* Align text to the left */
   color: rgba(255, 255, 255, 0.90);
   font-weight: 300;
   font-size: 20px;

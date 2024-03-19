@@ -91,8 +91,14 @@ body, html {
   color: #333; /* Set response text color to black */
 }
 
+/* Adjust margin for lists */
+#response-container ul,
+#response-container ol {
+  margin-bottom: 20px;
+}
+
 #response-container p {
-  margin-bottom: 20px; /* Increase space between paragraphs */
+  margin-bottom: 10px; /* Increase space between paragraphs */
 }
 
 #credits {

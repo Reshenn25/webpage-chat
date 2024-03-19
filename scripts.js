@@ -164,7 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
         displayResponse(null)
       })
   }
-
   // Render the response from the Voiceflow Dialog API
   function displayResponse(response) {
     console.log('Dialog API Response:', response)
@@ -199,7 +198,8 @@ document.addEventListener('DOMContentLoaded', () => {
             audioQueue.push(item.payload.src)
           } else if (item.type === 'text') {
             console.info('Text Step')
-            const textElement = document.createElement('p')
+            const textElement =
+ document.createElement('p')
             textElement.textContent = item.payload.message
             textElement.style.opacity = '0'
             responseContainer.appendChild(textElement)
@@ -290,8 +290,14 @@ document.addEventListener('DOMContentLoaded', () => {
       // Start playing audios sequentially
       playNextAudio()
 
-      // Adjust response container height based on content
-      adjustResponseContainerHeight();
+      // Calculate maximum height based on the input bar position and viewport height
+      const inputContainerHeight = inputFieldContainer.offsetHeight
+      const inputContainerTop = inputFieldContainer.getBoundingClientRect().top
+      const viewportHeight = window.innerHeight
+      const maxResponseContainerHeight = viewportHeight - inputContainerTop - inputContainerHeight - 30 // Adjust spacing
+
+      // Set the maximum height of the response container
+      responseContainer.style.maxHeight = `${maxResponseContainerHeight}px`
     }, 250)
     setTimeout(() => {
       // Re-enable input field and remove focus
@@ -345,15 +351,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 300)
     })
   }
-
-  // Function to adjust response container height based on content
-  function adjustResponseContainerHeight() {
-    responseContainer.style.height = 'auto'; // Reset height to auto to calculate the new height
-    const computedStyle = window.getComputedStyle(responseContainer);
-    const scrollHeight = responseContainer.scrollHeight;
-    const height = parseFloat(computedStyle.getPropertyValue('height'));
-    responseContainer.style.height = Math.max(height, scrollHeight) + 'px'; // Set the height to the maximum of the calculated height or scroll height
-  }
 })
 
 // Function to generate a unique ID for the user
@@ -370,3 +367,4 @@ function generateUniqueId() {
   const uniqueId = randomStr + dateTimeStrWithoutSeparators
   return uniqueId
 }
+
